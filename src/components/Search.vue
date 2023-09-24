@@ -9,10 +9,18 @@
               v-model="search"
               name="name"
               label="Search by Summoner"
+              clearable
             ></v-text-field>
           </v-col>
           <v-col cols="4" class="d-flex align-center justify-center">
-            <v-btn color="success" block @click="onFindSummoner()">Buscar</v-btn>
+            <v-btn
+              color="success"
+              :loading="isLoading"
+              block
+              @click="onFindSummoner()"
+            >
+              Buscar
+            </v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -20,19 +28,29 @@
   </div>
 </template>
 <script>
+  import { useAppStore } from "@/store/app";
   import { findSummoner } from "../services/RiotAPI";
+  import { mapActions, mapState } from "pinia";
   export default {
     data() {
       return {
         items: ["BR", "EU"],
         search: "",
+        isLoading: false,
       };
     },
     async mounted() {},
     methods: {
-      onFindSummoner() {
-        findSummoner(this.search);
+      ...mapActions(useAppStore, ["onAddState"]),
+      async onFindSummoner() {
+        this.isLoading = true;
+        const body = await findSummoner(this.search);
+        this.onAddState(body);
+        this.isLoading = false;
       },
+    },
+    computed: {
+      ...mapState(useAppStore, ["user"]),
     },
   };
 </script>

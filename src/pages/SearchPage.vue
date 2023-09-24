@@ -1,13 +1,18 @@
 <template>
-  <div>
-    <h1>search</h1>
-  </div>
+  <SummonerCard />
+  <HistoryMatch />
 </template>
 <script>
-export default {
-
-}
+  import SummonerCard from "../components/SummonerCard.vue";
+  import HistoryMatch from "../components/HistoryMatch.vue";
+  export default {
+    components: {
+      SummonerCard,
+      HistoryMatch,
+    },
+    data() {
+      return {};
+    },
+  };
 </script>
-<style lang="">
-
-</style>
+<style lang=""></style>
