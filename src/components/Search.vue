@@ -11,8 +11,8 @@
               label="Search by Summoner"
             ></v-text-field>
           </v-col>
-          <v-col cols="4">
-            <v-btn color="success" @click="onFindSummoner()">Buscar</v-btn>
+          <v-col cols="4" class="d-flex align-center justify-center">
+            <v-btn color="success" block @click="onFindSummoner()">Buscar</v-btn>
           </v-col>
         </v-row>
       </v-container>
