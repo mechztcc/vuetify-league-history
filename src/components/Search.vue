@@ -5,10 +5,14 @@
       <v-container>
         <v-row>
           <v-col cols="8">
-            <v-text-field name="name" label="Search by Summoner"></v-text-field>
+            <v-text-field
+              v-model="search"
+              name="name"
+              label="Search by Summoner"
+            ></v-text-field>
           </v-col>
           <v-col cols="4">
-            <v-select :items="items" v-model="value" label="Região"></v-select>
+            <v-btn color="success" @click="onFindSummoner()">Buscar</v-btn>
           </v-col>
         </v-row>
       </v-container>
@@ -21,10 +25,14 @@
     data() {
       return {
         items: ["BR", "EU"],
+        search: "",
       };
     },
-    async mounted() {
-      await findSummoner().then((data) => console.log);
+    async mounted() {},
+    methods: {
+      onFindSummoner() {
+        findSummoner(this.search);
+      },
     },
   };
 </script>
